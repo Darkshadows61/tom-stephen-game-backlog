@@ -16,21 +16,6 @@
     <body>
         <main>
             <section id="Tom">
-                <section id="tomContainer">
-                    <h2>Tom</h2>
-                    <ul class="tomMasterList">
-                        <% for (let i=0; i < tomBacklog.length; i++ ) {%>
-                            <li class ='tomList'>
-                                <span><%= tomBacklog[i].name %></span>
-                                <span><%= tomBacklog[i].platform %></span>
-                                <span><%= tomBacklog[i].likes %></span>
-                                <span id='tom-thumbs-up' class='fa fa-thumbs-up'></span>
-                                <span id='tom-trash' class='fa fa-trash'></span>
-                            </li>
-                        <% } %>
-                    </ul>
-                </section>
-
                 <section id="tomSubmit">
                     <h3>Tom: Add a new game</h3>
                     <form action="addTomGame" method="POST">
@@ -39,24 +24,41 @@
                         <button type="submit">Submit</button>
                     </form>
                 </section>
-            </section>
 
-            <section id="Stephen">
-                <h2>Stephen</h2>
-                <section id="stephenContainer">
-                    <ul class="stephenMasterList">
-                        <% for (let i=0; i < stephenBacklog.length; i++ ) {%>
-                            <li class= stephenList'>
-                                <span><%= stephenBacklog[i].name %></span>
-                                <span><%= stephenBacklog[i].platform %></span>
-                                <span><%= stephenBacklog[i].likes %></span>
-                                <span id='stephen-thumbs-up' class='fa fa-thumbs-up'></span>
-                                <span id='stephen-trash' class='fa fa-trash'></span>
+                <section id="tomContainerBacklog">
+                    <h2>Tom Backlog</h2>
+                    <ul class="tomMasterList">
+                        <% for (let i=0; i < tomBacklog.length; i++ ) {%>
+                            <li class ='tomList'>
+                                <span><%= tomBacklog[i].name %></span>
+                                <span><%= tomBacklog[i].platform %></span>
+                                <span><%= tomBacklog[i].likes %></span>
+                                <span id='tom-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='tom-trash' class='fa fa-trash'></span>
+                                <span id='tom-finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
                         <% } %>
                     </ul>
                 </section>
 
+                <section id="tomContainerComplete">
+                    <h2>Tom Complete</h2>
+                    <ul class="tomCompleteList">
+                        <% for (let i=0; i < tomBacklogComplete.length; i++ ) {%>
+                            <li class ='tomList'>
+                                <span><%= tomBacklogComplete[i].name %></span>
+                                <span><%= tomBacklogComplete[i].platform %></span>
+                                <span><%= tomBacklogComplete[i].likes %></span>
+                                <span id='tom-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='tom-trash-finish' class='fa fa-trash'></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
+
+            </section>
+
+            <section id="Stephen">
                 <section id="stephenSubmit">
                     <h3>Stephen: Add a new game</h3>
                     <form action="addStephenGame" method="POST">
@@ -65,6 +67,38 @@
                         <button type="submit">Submit</button>
                     </form>
                 </section>
+
+                <section id="stephenContainer">
+                    <h2>Stephen Backlog</h2>
+                    <ul class="stephenMasterList">
+                        <% for (let i=0; i < stephenBacklog.length; i++ ) {%>
+                            <li class= stephenList'>
+                                <span><%= stephenBacklog[i].name %></span>
+                                <span><%= stephenBacklog[i].platform %></span>
+                                <span><%= stephenBacklog[i].likes %></span>
+                                <span id='stephen-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='stephen-finish'><i class="fa-solid fa-flag-checkered"></i></span>
+                                <span id='stephen-trash' class='fa fa-trash'></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
+
+                <section id="stephenContainerComplete">
+                    <h2>Stephen Complete</h2>
+                    <ul class="stephenCompleteList">
+                        <% for (let i=0; i < stephenBacklogComplete.length; i++ ) {%>
+                            <li class ='tomList'>
+                                <span><%= stephenBacklogComplete[i].name %></span>
+                                <span><%= stephenBacklogComplete[i].platform %></span>
+                                <span><%= stephenBacklogComplete[i].likes %></span>
+                                <span id='stephen-thumbs-u-finish' class='fa fa-thumbs-up'></span>
+                                <span id='stephen-trash-finish' class='fa fa-trash'></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
+
             </section>
         </main>
 
