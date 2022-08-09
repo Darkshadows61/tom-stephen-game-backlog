@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 header{
     display: flex;
@@ -8,30 +9,37 @@ header{
     width: 100%;
     border: 5px black solid;
 }
+header h1{
+    padding: 5px;
+}
 main{
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
 }
-#Tom{
+main h2, h3, form{
+    padding: 5px;
+}
+#allSubmit{
     display: flex;
-    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
     border: 5px red solid;
-    width: 50%;
+    justify-content: space-around;
 }
-#tomSubmit{
-    width: 100%;
-}
-#tomContainer{
-    width: 100%;
-}
-#Stephen{
+#allBacklog{
     display: flex;
-    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
     border: 5px blue solid;
-    width: 50%;
+    justify-content: space-around;
 }
-#stephenSubmit{
+#allComplete{
+    display: flex;
+    height: 100%;
     width: 100%;
-}
-#stephenContainer{
-    width: 100%;
+    border: 5px yellow solid;
+    justify-content: space-around;
 }

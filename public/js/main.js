@@ -9,6 +9,11 @@
     const thumbStephenText = document.querySelectorAll('#stephen-thumbs-up')
     const finishStephenText = document.querySelectorAll('#stephen-finish')
     const finishStephenDelete = document.querySelectorAll('#stephen-trash-finish')
+//Sean
+    const deleteSeanText = document.querySelectorAll('#sean-trash')
+    const thumbSeanText = document.querySelectorAll('#sean-thumbs-up')
+    const finishSeanText = document.querySelectorAll('#sean-finish')
+    const finishSeanDelete = document.querySelectorAll('#sean-trash-finish')
 
 //Tom Array
 Array.from(deleteTomText).forEach((element)=>{
@@ -208,6 +213,113 @@ async function finishStephenGame(){
     const tLikes = Number(this.parentNode.childNodes[5].innerText)
     try{
         const res = await fetch('finishStephenGame', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform,
+              'likes': tLikes
+            })
+        })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+//Sean Array
+Array.from(deleteSeanText).forEach((element)=>{
+    element.addEventListener('click', deleteSeanGame)
+})
+
+Array.from(thumbSeanText).forEach((element)=>{
+    element.addEventListener('click', addOneSeanLike)
+})
+
+Array.from(finishSeanText).forEach((element) =>{
+    element.addEventListener('click', finishSeanGame)
+    element.addEventListener('click', deleteSeanGame)
+})
+
+Array.from(finishSeanDelete).forEach((element) =>{
+    element.addEventListener('click', deleteSeanGameFinish)
+})
+
+//Tom async await
+async function deleteSeanGame(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    try{
+        const res = await fetch('deleteSeanGame', {
+            method: 'delete',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function deleteSeanGameFinish(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    try{
+        const res = await fetch('deleteSeanGameFinish', {
+            method: 'delete',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function addOneSeanLike(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    try{
+        const res = await fetch('addOneSeanLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform,
+              'likes': tLikes
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function finishSeanGame(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    try{
+        const res = await fetch('finishSeanGame', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

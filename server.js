@@ -32,16 +32,22 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         const tomBacklogComplete = db.collection('tomBacklogComplete')
         const stephenBacklog = db.collection('stephenBacklog')
         const stephenBacklogComplete = db.collection('stephenBacklogComplete')
+        const seanBacklog = db.collection('seanBacklog')
+        const seanBacklogComplete = db.collection('seanBacklogComplete')
 
         app.get('/', (req,res)=>{
-            tomBacklog.find().toArray().then(result=>{
-                stephenBacklog.find().toArray().then(results =>{
-                    tomBacklogComplete.find().toArray().then(resultC => {
-                        stephenBacklogComplete.find().toArray().then(resultS =>{
-                            res.render('index.ejs', { tomBacklog: result, stephenBacklog: results, tomBacklogComplete: resultC, stephenBacklogComplete: resultS})    
+            tomBacklog.find().toArray().then(resultTomB=>{
+                stephenBacklog.find().toArray().then(resultStephenB=>{
+                    tomBacklogComplete.find().toArray().then(resultTomComplete =>{
+                        stephenBacklogComplete.find().toArray().then(resultStephenComplete =>{
+                            seanBacklog.find().toArray().then(resultSeanB=>{
+                                seanBacklogComplete.find().toArray().then(resultSeanComplete =>{
+                                    res.render('index.ejs', { tomBacklog: resultTomB, stephenBacklog: resultStephenB, tomBacklogComplete: resultTomComplete, stephenBacklogComplete: resultStephenComplete, seanBacklog: resultSeanB, seanBacklogComplete: resultSeanComplete})    
                         })
                     })
                 })
+            })
+        })
             .catch(error => console.error(error))
         })
         //Tom Add Game
@@ -80,6 +86,24 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
+        //Sean Add Game
+        app.post('/addSeanGame', (req,res) =>{
+            seanBacklog.insertOne({name: req.body.name, platform: req.body.platform, likes: 0})
+            .then(result => {
+                console.log('Sean Game Added')
+                res.redirect('/')
+            })
+           .catch(error => console.error(error))
+        })
+        //Sean Finish Game
+        app.post('/finishSeanGame', (req,res) =>{
+            seanBacklogComplete.insertOne({name: req.body.name, platform: req.body.platform, likes: 0})
+            .then(result =>{
+                console.log('Sean finished a game! Moved to Completed')
+                res.redirect('/')
+            })
+            .catch(error => console.error(error))
+        })
         //Tom Add one Like
         app.put('/addOneTomLike', (req,res)=>{
             tomBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
@@ -108,6 +132,22 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .then(result => {
                 console.log('Added One Like -Stephen')
+                res.json('Like Added')
+            })
+            .catch(error => console.error(error))
+        })
+        //Sean Add One Like
+        app.put('/addOneSeanLike', (req,res)=>{
+            seanBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes + 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Added One Like -Sean')
                 res.json('Like Added')
             })
             .catch(error => console.error(error))
@@ -145,6 +185,23 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             .then(result => {
                 console.log('Stephen Game F Deleted')
                 res.json('Stephen Game F Deleted')
+            })
+            .catch(error => console.error(error))
+        })
+        app.delete('/deleteSeanGame', (req, res) => {
+            seanBacklog.deleteOne({name: req.body.name})
+            .then(result => {
+                console.log('Tom Game Deleted')
+                res.json('Tom Game Deleted')
+            })
+            .catch(error => console.error(error))
+        })
+
+        app.delete('/deleteSeanGameFinish', (req, res) => {
+            seanBacklogComplete.deleteOne({name: req.body.name})
+            .then(result => {
+                console.log('Sean Game F Deleted')
+                res.json('Sean Game F Deleted')
             })
             .catch(error => console.error(error))
         })

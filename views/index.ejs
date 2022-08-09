@@ -10,12 +10,12 @@
     </head>
 
     <header>
-        <h1>Tom and Stephen Backlog</h1>
+        <h1>Tom, Stephen, and Sean Backlog</h1>
     </header>
 
     <body>
         <main>
-            <section id="Tom">
+            <section id="allSubmit">
                 <section id="tomSubmit">
                     <h3>Tom: Add a new game</h3>
                     <form action="addTomGame" method="POST">
@@ -25,6 +25,26 @@
                     </form>
                 </section>
 
+                <section id="stephenSubmit">
+                    <h3>Stephen: Add a new game</h3>
+                    <form action="addStephenGame" method="POST">
+                        <input type="text" placeholder="Name" name="name">
+                        <input type="text" placeholder="Platform" name="platform">
+                        <button type="submit">Submit</button>
+                    </form>
+                </section>
+
+                <section id="seanSubmit">
+                    <h3>Sean: Add a new game</h3>
+                    <form action="addSeanGame" method="POST">
+                        <input type="text" placeholder="Name" name="name">
+                        <input type="text" placeholder="Platform" name="platform">
+                        <button type="submit">Submit</button>
+                    </form>
+                </section>
+            </section>
+
+            <section id="allBacklog">
                 <section id="tomContainerBacklog">
                     <h2>Tom Backlog</h2>
                     <ul class="tomMasterList">
@@ -39,33 +59,6 @@
                             </li>
                         <% } %>
                     </ul>
-                </section>
-
-                <section id="tomContainerComplete">
-                    <h2>Tom Complete</h2>
-                    <ul class="tomCompleteList">
-                        <% for (let i=0; i < tomBacklogComplete.length; i++ ) {%>
-                            <li class ='tomList'>
-                                <span><%= tomBacklogComplete[i].name %></span>
-                                <span><%= tomBacklogComplete[i].platform %></span>
-                                <span><%= tomBacklogComplete[i].likes %></span>
-                                <span id='tom-thumbs-up-finish' class='fa fa-thumbs-up'></span>
-                                <span id='tom-trash-finish' class='fa fa-trash'></span>
-                            </li>
-                        <% } %>
-                    </ul>
-                </section>
-
-            </section>
-
-            <section id="Stephen">
-                <section id="stephenSubmit">
-                    <h3>Stephen: Add a new game</h3>
-                    <form action="addStephenGame" method="POST">
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="text" placeholder="Platform" name="platform">
-                        <button type="submit">Submit</button>
-                    </form>
                 </section>
 
                 <section id="stephenContainer">
@@ -84,11 +77,44 @@
                     </ul>
                 </section>
 
+                <section id="seanContainerBacklog">
+                    <h2>Sean Backlog</h2>
+                    <ul class="seanMasterList">
+                        <% for (let i=0; i < seanBacklog.length; i++ ) {%>
+                            <li class ='tomList'>
+                                <span><%= seanBacklog[i].name %></span>
+                                <span><%= seanBacklog[i].platform %></span>
+                                <span><%= seanBacklog[i].likes %></span>
+                                <span id='sean-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='sean-trash' class='fa fa-trash'></span>
+                                <span id='sean-finish'><i class="fa-solid fa-flag-checkered"></i></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="allComplete">
+                <section id="tomContainerComplete">
+                    <h2>Tom Complete</h2>
+                    <ul class="tomCompleteList">
+                        <% for (let i=0; i < tomBacklogComplete.length; i++ ) {%>
+                            <li class ='tomList'>
+                                <span><%= tomBacklogComplete[i].name %></span>
+                                <span><%= tomBacklogComplete[i].platform %></span>
+                                <span><%= tomBacklogComplete[i].likes %></span>
+                                <span id='tom-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='tom-trash-finish' class='fa fa-trash'></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
+                        
                 <section id="stephenContainerComplete">
                     <h2>Stephen Complete</h2>
                     <ul class="stephenCompleteList">
                         <% for (let i=0; i < stephenBacklogComplete.length; i++ ) {%>
-                            <li class ='tomList'>
+                            <li class ='stephenList'>
                                 <span><%= stephenBacklogComplete[i].name %></span>
                                 <span><%= stephenBacklogComplete[i].platform %></span>
                                 <span><%= stephenBacklogComplete[i].likes %></span>
@@ -98,8 +124,23 @@
                         <% } %>
                     </ul>
                 </section>
-
+                
+                <section id="seanContainerComplete">
+                    <h2>Sean Complete</h2>
+                    <ul class="seanCompleteList">
+                        <% for (let i=0; i < seanBacklogComplete.length; i++ ) {%>
+                            <li class ='seanList'>
+                                <span><%= seanBacklogComplete[i].name %></span>
+                                <span><%= seanBacklogComplete[i].platform %></span>
+                                <span><%= seanBacklogComplete[i].likes %></span>
+                                <span id='sean-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='sean-trash-finish' class='fa fa-trash'></span>
+                            </li>
+                        <% } %>
+                    </ul>
+                </section>
             </section>
+
         </main>
 
         <script src="js/main.js"></script>
