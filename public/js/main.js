@@ -2,16 +2,19 @@
 //Tom
     const deleteTomText = document.querySelectorAll('#tom-trash')
     const thumbTomText = document.querySelectorAll('#tom-thumbs-up')
+    const thumbDownTomText = document.querySelectorAll('#tom-thumbs-down')
     const finishTomText = document.querySelectorAll('#tom-finish')
     const finishTomDelete = document.querySelectorAll('#tom-trash-finish')
-//Stephen
+    //Stephen
     const deleteStephenText = document.querySelectorAll('#stephen-trash')
     const thumbStephenText = document.querySelectorAll('#stephen-thumbs-up')
+    const thumbDownStephenText = document.querySelectorAll('#stephen-thumbs-down')
     const finishStephenText = document.querySelectorAll('#stephen-finish')
     const finishStephenDelete = document.querySelectorAll('#stephen-trash-finish')
 //Sean
     const deleteSeanText = document.querySelectorAll('#sean-trash')
     const thumbSeanText = document.querySelectorAll('#sean-thumbs-up')
+    const thumbDownSeanText = document.querySelectorAll('#sean-thumbs-down')
     const finishSeanText = document.querySelectorAll('#sean-finish')
     const finishSeanDelete = document.querySelectorAll('#sean-trash-finish')
 
@@ -19,11 +22,12 @@
 Array.from(deleteTomText).forEach((element)=>{
     element.addEventListener('click', deleteTomGame)
 })
-
 Array.from(thumbTomText).forEach((element)=>{
     element.addEventListener('click', addOneTomLike)
 })
-
+Array.from(thumbDownTomText).forEach((element =>{
+    element.addEventListener('click', subOneTomLike)
+}))
 Array.from(finishTomText).forEach((element) =>{
     element.addEventListener('click', finishTomGame)
     element.addEventListener('click', deleteTomGame)
@@ -99,6 +103,29 @@ async function addOneTomLike(){
     }
 }
 
+async function subOneTomLike(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    try{
+        const res = await fetch('subOneTomLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform,
+              'likes': tLikes
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
 async function finishTomGame(){
     const name = this.parentNode.childNodes[1].innerText
     const platform = this.parentNode.childNodes[3].innerText
@@ -127,16 +154,16 @@ async function finishTomGame(){
 Array.from(deleteStephenText).forEach((element)=>{
     element.addEventListener('click', deleteStephenGame)
 })
-
 Array.from(thumbStephenText).forEach((element)=>{
     element.addEventListener('click', addOneStephenLike)
 })
-
+Array.from(thumbDownStephenText).forEach((element =>{
+    element.addEventListener('click', subOneStephenLike)
+}))
 Array.from(finishStephenText).forEach((element) =>{
     element.addEventListener('click', finishStephenGame)
     element.addEventListener('click', deleteStephenGame)
 })
-
 Array.from(finishStephenDelete).forEach((element) =>{
     element.addEventListener('click', deleteStephenGameFinish)
 })
@@ -207,6 +234,29 @@ async function addOneStephenLike(){
     }
 }
 
+async function subOneStephenLike(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    try{
+        const res = await fetch('subOneStephenLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform,
+              'likes': tLikes
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
 async function finishStephenGame(){
     const name = this.parentNode.childNodes[1].innerText
     const platform = this.parentNode.childNodes[3].innerText
@@ -234,21 +284,21 @@ async function finishStephenGame(){
 Array.from(deleteSeanText).forEach((element)=>{
     element.addEventListener('click', deleteSeanGame)
 })
-
 Array.from(thumbSeanText).forEach((element)=>{
     element.addEventListener('click', addOneSeanLike)
 })
-
+Array.from(thumbDownSeanText).forEach((element =>{
+    element.addEventListener('click', subOneSeanLike)
+}))
 Array.from(finishSeanText).forEach((element) =>{
     element.addEventListener('click', finishSeanGame)
     element.addEventListener('click', deleteSeanGame)
 })
-
 Array.from(finishSeanDelete).forEach((element) =>{
     element.addEventListener('click', deleteSeanGameFinish)
 })
 
-//Tom async await
+//Sean Async Await
 async function deleteSeanGame(){
     const name = this.parentNode.childNodes[1].innerText
     const platform = this.parentNode.childNodes[3].innerText
@@ -297,6 +347,29 @@ async function addOneSeanLike(){
     const tLikes = Number(this.parentNode.childNodes[5].innerText)
     try{
         const res = await fetch('addOneSeanLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'name': name,
+              'platform': platform,
+              'likes': tLikes
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+async function subOneSeanLike(){
+    const name = this.parentNode.childNodes[1].innerText
+    const platform = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    try{
+        const res = await fetch('subOneSeanLike', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

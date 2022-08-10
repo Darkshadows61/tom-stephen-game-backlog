@@ -35,6 +35,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         const seanBacklog = db.collection('seanBacklog')
         const seanBacklogComplete = db.collection('seanBacklogComplete')
 
+        //Main Page EJS
         app.get('/', (req,res)=>{
             tomBacklog.find().toArray().then(resultTomB=>{
                 stephenBacklog.find().toArray().then(resultStephenB=>{
@@ -49,6 +50,18 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
         })
             .catch(error => console.error(error))
+        })
+        //About
+        app.get('/about', (req,res)=>{
+            res.render('about.ejs')
+        })
+        //Contact
+        app.get('/contact', (req,res)=>{
+            res.render('contact.ejs')
+        })
+        //Test
+        app.get('/test', (req,res)=>{
+            res.render('test.ejs')
         })
         //Tom Add Game
         app.post('/addTomGame', (req,res) =>{
@@ -104,7 +117,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-        //Tom Add one Like
+        //Tom Add One Like
         app.put('/addOneTomLike', (req,res)=>{
             tomBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
                 $set: {
@@ -117,6 +130,22 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             .then(result => {
                 console.log('Added One Like -Tom')
                 res.json('Like Added')
+            })
+            .catch(error => console.error(error))
+        })
+        //Tom Sub One Like
+        app.put('/subOneTomLike', (req,res)=>{
+            tomBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Tom')
+                res.json('Like Removed')
             })
             .catch(error => console.error(error))
         })
@@ -136,6 +165,22 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
+        //Stephen Sub One Like
+        app.put('/subOneStephenLike', (req,res)=>{
+            stephenBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Stephen')
+                res.json('Like Removed')
+            })
+            .catch(error => console.error(error))
+        })
         //Sean Add One Like
         app.put('/addOneSeanLike', (req,res)=>{
             seanBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
@@ -152,7 +197,23 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-
+        //Sean Sub One Like
+        app.put('/subOneSeanLike', (req,res)=>{
+            seanBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Sean')
+                res.json('Like Removed')
+            })
+            .catch(error => console.error(error))
+        })
+        //Tom Delete Game
         app.delete('/deleteTomGame', (req, res) => {
             tomBacklog.deleteOne({name: req.body.name})
             .then(result => {
@@ -161,7 +222,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-
+        //Tom Delete Finished Game
         app.delete('/deleteTomGameFinish', (req, res) => {
             tomBacklogComplete.deleteOne({name: req.body.name})
             .then(result => {
@@ -170,7 +231,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-
+        //Stephen Delete
         app.delete('/deleteStephenGame', (req, res) => {
             stephenBacklog.deleteOne({name: req.body.name})
             .then(result => {
@@ -179,7 +240,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-
+        //Stepehen Delete Finished Game
         app.delete('/deleteStephenGameFinish', (req, res) => {
             stephenBacklogComplete.deleteOne({name: req.body.name})
             .then(result => {
@@ -188,6 +249,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
+        //Sean Delete
         app.delete('/deleteSeanGame', (req, res) => {
             seanBacklog.deleteOne({name: req.body.name})
             .then(result => {
@@ -196,7 +258,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
-
+        //Sean Delete Finished Game
         app.delete('/deleteSeanGameFinish', (req, res) => {
             seanBacklogComplete.deleteOne({name: req.body.name})
             .then(result => {

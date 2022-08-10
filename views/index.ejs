@@ -10,8 +10,48 @@
     </head>
 
     <header>
-        <h1>Tom, Stephen, and Sean Backlog</h1>
-    </header>
+        <nav class="topNav">
+            <div class="homeMobile">
+                <a href="/">Home</a>
+            </div>
+            <div class="navBucket mobileOnly">
+                <button class="bucketButton">|||
+                    <i></i>
+                </button>
+                    <div class="bucketItems">
+                        <a href="/">Home</a>
+                        <a href="/test">Test Page 1</a>
+                        <a href="/test">Test Page 2</a>
+                        <a href="/test">Test Page 3</a>
+                        <a href="/test">Test Page 4</a>
+                        <a href="/about">About</a>
+                        <a href="/contact">Contact</a>
+                    </div>
+            </div>
+            <div class="navBucket">
+                <button class="bucketButton">Test
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                    <div class="bucketItems">
+                        <a href="/test">Test Page 1</a>
+                        <a href="/test">Test Page 2</a>
+                        <a href="/test">Test Page 3</a>
+                        <a href="/test">Test Page 4</a>
+                    </div>
+            </div>
+            <div class="navBucket">
+                <button class="bucketButton">About
+                    <i></i>
+                </button>
+                <div class="bucketItems">
+                    <a href="/about">About</a>
+                    <a href="/contact">Contact</a>
+                </div>
+            </div>
+            <div class="title">
+                <p>Game Backlog</p>
+            </div>
+        </nav>
 
     <body>
         <main>
@@ -50,10 +90,20 @@
                     <ul class="tomMasterList">
                         <% for (let i=0; i < tomBacklog.length; i++ ) {%>
                             <li class ='tomList'>
-                                <span><%= tomBacklog[i].name %></span>
-                                <span><%= tomBacklog[i].platform %></span>
-                                <span><%= tomBacklog[i].likes %></span>
+                                <span id="tom-game-name"><%= tomBacklog[i].name %></span>
+                                <span id="tom-game-platform" hidden="true"><%= tomBacklog[i].platform %></span>
+                                Likes:<span id="tom-game-likes"><%= tomBacklog[i].likes %></span>
+                                <% if (tomBacklog[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (tomBacklog[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (tomBacklog[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/Gameboy.png' height="15" width="20%">
+                                <% } else if (tomBacklog[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
                                 <span id='tom-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='tom-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='tom-trash' class='fa fa-trash'></span>
                                 <span id='tom-finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
@@ -61,15 +111,27 @@
                     </ul>
                 </section>
 
-                <section id="stephenContainer">
+                <section id="stephenContainerBacklog">
                     <h2>Stephen Backlog</h2>
                     <ul class="stephenMasterList">
                         <% for (let i=0; i < stephenBacklog.length; i++ ) {%>
                             <li class= stephenList'>
-                                <span><%= stephenBacklog[i].name %></span>
-                                <span><%= stephenBacklog[i].platform %></span>
-                                <span><%= stephenBacklog[i].likes %></span>
+                                <span id="stephen-game-name"><%= stephenBacklog[i].name %></span>
+                                <span id="stephen-platform-name" hidden="true"><%= stephenBacklog[i].platform %></span>
+                                <span id="stephen-game-likes"><%= stephenBacklog[i].likes %></span>
+                                <% if (stephenBacklog[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (stephenBacklog[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (stephenBacklog[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/Gameboy.png' height="15" width="20%">
+                                <% } else if (stephenBacklog[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } else if (stephenBacklog[i].platform == 'PS5') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
                                 <span id='stephen-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='stephen-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='stephen-finish'><i class="fa-solid fa-flag-checkered"></i></span>
                                 <span id='stephen-trash' class='fa fa-trash'></span>
                             </li>
@@ -82,10 +144,20 @@
                     <ul class="seanMasterList">
                         <% for (let i=0; i < seanBacklog.length; i++ ) {%>
                             <li class ='tomList'>
-                                <span><%= seanBacklog[i].name %></span>
-                                <span><%= seanBacklog[i].platform %></span>
-                                <span><%= seanBacklog[i].likes %></span>
+                                <span id="sean-game-name"><%= seanBacklog[i].name %></span>
+                                <span id="sean-game-platform" hidden="true"><%= seanBacklog[i].platform %></span>
+                                <span id="sean-game-likes"><%= seanBacklog[i].likes %></span>
+                                <% if (seanBacklog[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (seanBacklog[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (seanBacklog[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/Gameboy.png' height="15" width="20%">
+                                <% } else if (seanBacklog[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
                                 <span id='sean-thumbs-up' class='fa fa-thumbs-up'></span>
+                                <span id='sean-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='sean-trash' class='fa fa-trash'></span>
                                 <span id='sean-finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
