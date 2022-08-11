@@ -149,6 +149,38 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
+        //Tom Add One Like Finish
+        app.put('/addOneTomLikeFinish', (req,res)=>{
+            tomBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes + 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Added One Like -Tom')
+                res.json('Like Added')
+            })
+            .catch(error => console.error(error))
+        })
+        //Tom Sub One Like Finish
+        app.put('/subOneTomLikeFinish', (req,res)=>{
+            tomBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Tom')
+                res.json('Like Removed')
+            })
+            .catch(error => console.error(error))
+        })
         //Stephen Add One Like
         app.put('/addOneStephenLike', (req,res)=>{
             stephenBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
@@ -181,6 +213,38 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .catch(error => console.error(error))
         })
+        //Stephen Add One Like Finish
+        app.put('/addOneStephenLikeFinish', (req,res)=>{
+            stephenBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes + 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Added One Like -Tom')
+                res.json('Like Added')
+            })
+            .catch(error => console.error(error))
+        })
+        //Stephen Sub One Like Finish
+        app.put('/subOneStephenLikeFinish', (req,res)=>{
+            stephenBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Tom')
+                res.json('Like Removed')
+            })
+            .catch(error => console.error(error))
+        })
         //Sean Add One Like
         app.put('/addOneSeanLike', (req,res)=>{
             seanBacklog.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
@@ -209,6 +273,38 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
             .then(result => {
                 console.log('Minus One Like -Sean')
+                res.json('Like Removed')
+            })
+            .catch(error => console.error(error))
+        })
+        //Sean Add One Like Finish
+        app.put('/addOneSeanLikeFinish', (req,res)=>{
+            seanBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes + 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Added One Like -Tom')
+                res.json('Like Added')
+            })
+            .catch(error => console.error(error))
+        })
+        //Sean Sub One Like Finish
+        app.put('/subOneSeanLikeFinish', (req,res)=>{
+            seanBacklogComplete.updateOne({name: req.body.name, platform: req.body.platform, likes: req.body.likes},{
+                $set: {
+                    likes:req.body.likes - 1
+                }
+            },{
+                sort: {_id: -1},
+                upsert: true
+            })
+            .then(result => {
+                console.log('Minus One Like -Tom')
                 res.json('Like Removed')
             })
             .catch(error => console.error(error))

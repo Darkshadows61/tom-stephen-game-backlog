@@ -173,9 +173,19 @@
                         <% for (let i=0; i < tomBacklogComplete.length; i++ ) {%>
                             <li class ='tomList'>
                                 <span><%= tomBacklogComplete[i].name %></span>
-                                <span><%= tomBacklogComplete[i].platform %></span>
+                                <span hidden="true"><%= tomBacklogComplete[i].platform %></span>
                                 <span><%= tomBacklogComplete[i].likes %></span>
+                                <% if (tomBacklogComplete[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (tomBacklogComplete[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (tomBacklogComplete[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/GameBoy.png' height="15" width="20%">
+                                <% } else if (tomBacklogComplete[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
                                 <span id='tom-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='tom-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='tom-trash-finish' class='fa fa-trash'></span>
                             </li>
                         <% } %>
@@ -188,9 +198,21 @@
                         <% for (let i=0; i < stephenBacklogComplete.length; i++ ) {%>
                             <li class ='stephenList'>
                                 <span><%= stephenBacklogComplete[i].name %></span>
-                                <span><%= stephenBacklogComplete[i].platform %></span>
+                                <span hidden="true"><%= stephenBacklogComplete[i].platform %></span>
                                 <span><%= stephenBacklogComplete[i].likes %></span>
-                                <span id='stephen-thumbs-u-finish' class='fa fa-thumbs-up'></span>
+                                <% if (stephenBacklogComplete[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (stephenBacklogComplete[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (stephenBacklogComplete[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/GameBoy.png' height="15" width="20%">
+                                <% } else if (stephenBacklogComplete[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } else if (stephenBacklogComplete[i].platform == 'PS5') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
+                                <span id='stephen-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='stephen-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='stephen-trash-finish' class='fa fa-trash'></span>
                             </li>
                         <% } %>
@@ -203,9 +225,19 @@
                         <% for (let i=0; i < seanBacklogComplete.length; i++ ) {%>
                             <li class ='seanList'>
                                 <span><%= seanBacklogComplete[i].name %></span>
-                                <span><%= seanBacklogComplete[i].platform %></span>
+                                <span hidden="true"><%= seanBacklogComplete[i].platform %></span>
                                 <span><%= seanBacklogComplete[i].likes %></span>
+                                <% if (seanBacklogComplete[i].platform == 'Xbox') { %>
+                                    <img src='style/images/Xbox.png' height="10%" width="10%">
+                                <% } else if (seanBacklogComplete[i].platform == 'Switch') { %>
+                                    <img src='style/images/Switch.png' height="7%" width="10%">
+                                <% } else if (seanBacklogComplete[i].platform == 'Gameboy') { %>
+                                    <img src='style/images/GameBoy.png' height="15" width="20%">
+                                <% } else if (seanBacklogComplete[i].platform == 'PS4') { %>
+                                    <img src='style/images/PSN.png' height="15%" width="15%">
+                                <% } %>
                                 <span id='sean-thumbs-up-finish' class='fa fa-thumbs-up'></span>
+                                <span id='sean-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
                                 <span id='sean-trash-finish' class='fa fa-trash'></span>
                             </li>
                         <% } %>

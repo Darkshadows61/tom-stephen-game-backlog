@@ -111,29 +111,21 @@ main h2, h3, form{
     padding: 3px;
 }
 @media screen and (max-width: 600px) {
-    #allBacklog li img {
+    #allBacklog li img, #allComplete li img {
       height: 80%;
       width: 85%;
     }
   }
-#allBacklog ul{
+#allBacklog ul, #allComplete li{
     list-style-type: none;
 }
 @media screen and (max-width: 600px) {
-    #allBacklog ul {
+    #allBacklog ul, #allComplete ul {
       padding: 1px;
       background-color: white;
     }
   }
-#tomContainerBacklog{
-    width: 33.3%;
-    border: green 5px solid;
-}
-#stephenContainerBacklog{
-    width: 33.3%;
-    border: green 5px solid;
-}
-#seanContainerBacklog{
+#tomContainerBacklog, #stephenContainerBacklog, #seanContainerBacklog{
     width: 33.3%;
     border: green 5px solid;
 }
@@ -143,4 +135,11 @@ main h2, h3, form{
     width: 100%;
     border: 5px yellow solid;
     justify-content: space-around;
+}
+#allComplete li{
+  padding: 3px;
+}
+#tomContainerComplete, #stephenContainerComplete, #seanContainerComplete{
+  width: 33.3%;
+  border: orange 5px solid;
 }
