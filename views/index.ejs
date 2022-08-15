@@ -52,199 +52,382 @@
                 <p>Game Backlog</p>
             </div>
         </nav>
+    </header>
 
     <body>
         <main>
-            <section id="allSubmit">
-                <section id="tomSubmit">
-                    <h3>Tom: Add a new game</h3>
-                    <form action="addTomGame" method="POST">
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="text" placeholder="Platform" name="platform">
+            <section>
+                <section id="allSubmit">
+                    <h3>Add a new game</h3>
+                    <form action="addGame" method="POST">
+                        <label for="player">Player</label>
+                            <select id="player" name="player">
+                                <option value="">Choose a Player</option>
+                                <option value="Tom">Tom</option>
+                                <option value="Stephen">Stephen</option>
+                                <option value="Sean">Sean</option>
+                            </select>
+                        <label for="platform">Platform</label>
+                            <select id="platform" name="platform">
+                                <option value="">Choose a Platform</option>
+                                <option value="Xbox">Xbox</option>
+                                <option value="PSN">Playstation</option>
+                                <option value="Switch">Switch</option>
+                                <option value="NES">NES</option>
+                                <option value="SNES">SNES</option>
+                                <option value="N64">N64</option>
+                                <option value="GCN">Gamecube</option>
+                                <option value="Wii">Wii</option>
+                                <option value="WiiU">Wii U</option>
+                                <option value="GameBoy">GameBoy</option>
+                                <option value="GBC">GameBoy Color</option>
+                                <option value="GBA">GBA</option>
+                                <option value="DS">DS</option>
+                                <option value="3DS">3DS</option>
+                                <option value="Genesis">Sega Genesis</option>
+                                <option value="GameGear">Sega GameGear</option>
+                                <option value="Saturn">Sega Saturn</option>
+                                <option value="Dreamcast">Dreamcast</option>
+                            </select>
+                            <input type="text" placeholder="Game" name="name">
                         <button type="submit">Submit</button>
                     </form>
                 </section>
-
-                <section id="stephenSubmit">
-                    <h3>Stephen: Add a new game</h3>
-                    <form action="addStephenGame" method="POST">
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="text" placeholder="Platform" name="platform">
-                        <button type="submit">Submit</button>
-                    </form>
-                </section>
-
-                <section id="seanSubmit">
-                    <h3>Sean: Add a new game</h3>
-                    <form action="addSeanGame" method="POST">
-                        <input type="text" placeholder="Name" name="name">
-                        <input type="text" placeholder="Platform" name="platform">
-                        <button type="submit">Submit</button>
-                    </form>
-                </section>
-            </section>
 
             <section id="allBacklog">
                 <section id="tomContainerBacklog">
                     <h2>Tom Backlog</h2>
-                    <ul class="tomMasterList">
-                        <% for (let i=0; i < tomBacklog.length; i++ ) {%>
-                            <li class ='tomList'>
-                                <span id="tom-game-name"><%= tomBacklog[i].name %></span>
-                                <span id="tom-game-platform" hidden="true"><%= tomBacklog[i].platform %></span>
-                                Likes:<span id="tom-game-likes"><%= tomBacklog[i].likes %></span>
-                                <% if (tomBacklog[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (tomBacklog[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (tomBacklog[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (tomBacklog[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='tom-thumbs-up' class='fa fa-thumbs-up'></span>
-                                <span id='tom-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='tom-trash' class='fa fa-trash'></span>
-                                <span id='tom-finish'><i class="fa-solid fa-flag-checkered"></i></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='tomList'>
+                                <% if (master[i].player == 'Tom' && master[i].complete == false) { %>
+                                <li class="tomList">
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name"><%= master[i].name %></span>
+                                <span id="platformHidden" ><%= master[i].platform %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
+                                <span id='finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
                         <% } %>
+                      <% } %>
+                        </div>
                     </ul>
                 </section>
-
                 <section id="stephenContainerBacklog">
                     <h2>Stephen Backlog</h2>
-                    <ul class="stephenMasterList">
-                        <% for (let i=0; i < stephenBacklog.length; i++ ) {%>
-                            <li class= stephenList'>
-                                <span id="stephen-game-name"><%= stephenBacklog[i].name %></span>
-                                <span id="stephen-platform-name" hidden="true"><%= stephenBacklog[i].platform %></span>
-                                Likes:<span id="stephen-game-likes"><%= stephenBacklog[i].likes %></span>
-                                <% if (stephenBacklog[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (stephenBacklog[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (stephenBacklog[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (stephenBacklog[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } else if (stephenBacklog[i].platform == 'PS5') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='stephen-thumbs-up' class='fa fa-thumbs-up'></span>
-                                <span id='stephen-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='stephen-finish'><i class="fa-solid fa-flag-checkered"></i></span>
-                                <span id='stephen-trash' class='fa fa-trash'></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='stephenList'>
+                                <% if (master[i].player == 'Stephen' && master[i].complete == false) { %>
+                                <li class='stephenList'>
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name" ><%= master[i].name %></span>
+                                <span id="platformHidden" hidden="true"><%= master[i].platform %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
+                                <span id='finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
                         <% } %>
+                      <% } %>
+                        </div>
                     </ul>
                 </section>
-
                 <section id="seanContainerBacklog">
                     <h2>Sean Backlog</h2>
-                    <ul class="seanMasterList">
-                        <% for (let i=0; i < seanBacklog.length; i++ ) {%>
-                            <li class ='tomList'>
-                                <span id="sean-game-name"><%= seanBacklog[i].name %></span>
-                                <span id="sean-game-platform" hidden="true"><%= seanBacklog[i].platform %></span>
-                                Likes:<span id="sean-game-likes"><%= seanBacklog[i].likes %></span>
-                                <% if (seanBacklog[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (seanBacklog[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (seanBacklog[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (seanBacklog[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='sean-thumbs-up' class='fa fa-thumbs-up'></span>
-                                <span id='sean-thumbs-down'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='sean-trash' class='fa fa-trash'></span>
-                                <span id='sean-finish'><i class="fa-solid fa-flag-checkered"></i></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='seanList'>
+                                <% if (master[i].player == 'Sean' && master[i].complete == false) { %>
+                                <li class="seanList">
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name"><%= master[i].name %></span>
+                                <span id="platformHidden" hidden="true"><%= master[i].platform %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
+                                <span id='finish'><i class="fa-solid fa-flag-checkered"></i></span>
                             </li>
                         <% } %>
+                      <% } %>
+                        </div>
                     </ul>
                 </section>
             </section>
-
             <section id="allComplete">
                 <section id="tomContainerComplete">
                     <h2>Tom Complete</h2>
-                    <ul class="tomCompleteList">
-                        <% for (let i=0; i < tomBacklogComplete.length; i++ ) {%>
-                            <li class ='tomList'>
-                                <span><%= tomBacklogComplete[i].name %></span>
-                                <span hidden="true"><%= tomBacklogComplete[i].platform %></span>
-                                <span><%= tomBacklogComplete[i].likes %></span>
-                                <% if (tomBacklogComplete[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (tomBacklogComplete[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (tomBacklogComplete[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (tomBacklogComplete[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='tom-thumbs-up-finish' class='fa fa-thumbs-up'></span>
-                                <span id='tom-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='tom-trash-finish' class='fa fa-trash'></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='tomCompleteList'>
+                                <% if (master[i].player == 'Tom' && master[i].complete == true) { %>
+                                <li class ='tomCompleteList'>
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name"><%= master[i].name %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
                             </li>
                         <% } %>
+                      <% } %>
+                        </div>
                     </ul>
                 </section>
-                        
                 <section id="stephenContainerComplete">
                     <h2>Stephen Complete</h2>
-                    <ul class="stephenCompleteList">
-                        <% for (let i=0; i < stephenBacklogComplete.length; i++ ) {%>
-                            <li class ='stephenList'>
-                                <span><%= stephenBacklogComplete[i].name %></span>
-                                <span hidden="true"><%= stephenBacklogComplete[i].platform %></span>
-                                <span><%= stephenBacklogComplete[i].likes %></span>
-                                <% if (stephenBacklogComplete[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (stephenBacklogComplete[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (stephenBacklogComplete[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (stephenBacklogComplete[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } else if (stephenBacklogComplete[i].platform == 'PS5') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='stephen-thumbs-up-finish' class='fa fa-thumbs-up'></span>
-                                <span id='stephen-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='stephen-trash-finish' class='fa fa-trash'></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='stephenCompleteList'>
+                                <% if (master[i].player == 'Stephen' && master[i].complete == true) { %>
+                                <li class ='stephenCompleteList'>
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name"><%= master[i].name %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
                             </li>
                         <% } %>
+                      <% } %>
+                        </div>
                     </ul>
                 </section>
-                
                 <section id="seanContainerComplete">
                     <h2>Sean Complete</h2>
-                    <ul class="seanCompleteList">
-                        <% for (let i=0; i < seanBacklogComplete.length; i++ ) {%>
-                            <li class ='seanList'>
-                                <span><%= seanBacklogComplete[i].name %></span>
-                                <span hidden="true"><%= seanBacklogComplete[i].platform %></span>
-                                <span><%= seanBacklogComplete[i].likes %></span>
-                                <% if (seanBacklogComplete[i].platform == 'Xbox') { %>
-                                    <img src='style/images/Xbox.png' height="10%" width="10%">
-                                <% } else if (seanBacklogComplete[i].platform == 'Switch') { %>
-                                    <img src='style/images/Switch.png' height="7%" width="10%">
-                                <% } else if (seanBacklogComplete[i].platform == 'Gameboy') { %>
-                                    <img src='style/images/GameBoy.png' height="15" width="20%">
-                                <% } else if (seanBacklogComplete[i].platform == 'PS4') { %>
-                                    <img src='style/images/PSN.png' height="15%" width="15%">
-                                <% } %>
-                                <span id='sean-thumbs-up-finish' class='fa fa-thumbs-up'></span>
-                                <span id='sean-thumbs-down-finish'><i class="fa-solid fa-thumbs-down"></i></span>
-                                <span id='sean-trash-finish' class='fa fa-trash'></span>
+                    <ul>
+                        <% for (let i=0; i < master.length; i++ ) { %>
+                            <div class ='seanCompleteList'>
+                                <% if (master[i].player == 'Sean' && master[i].complete == true) { %>
+                                <li class ='seanCompleteList'>
+                                <span id="player" hidden="true"><%= master[i].player %></span>
+                                <span id="name"><%= master[i].name %></span>
+                                <span id="platform"><% if (master[i].platform == 'Xbox') { %>
+                                    <span><img src="/style/images/Xbox.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'PSN' ) { %> 
+                                    <span><img src="/style/images/PSN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Switch' ) { %> 
+                                    <span><img src="/style/images/Switch.png" height="10%" width="10%"></span>
+                                <% } else if (master[i].platform == 'NES' ) { %> 
+                                    <span><img src="/style/images/NES.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'SNES' ) { %> 
+                                    <span><img src="/style/images/SNES.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'N64' ) { %> 
+                                    <span><img src="/style/images/N64.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GCN' ) { %> 
+                                    <span><img src="/style/images/GCN.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Wii' ) { %> 
+                                    <span><img src="/style/images/Wii.png" height="5%" width="5%"></span>
+                                <% } else if (master[i].platform == 'WiiU' ) { %> 
+                                    <span><img src="/style/images/WiiU.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameBoy' ) { %> 
+                                    <span><img src="/style/images/GameBoy.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBC' ) { %> 
+                                    <span><img src="/style/images/GBC.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'GBA' ) { %> 
+                                    <span><img src="/style/images/GBA.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'DS' ) { %> 
+                                    <span><img src="/style/images/DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == '3DS' ) { %> 
+                                    <span><img src="/style/images/3DS.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Genesis' ) { %> 
+                                    <span><img src="/style/images/Genesis.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'GameGear' ) { %> 
+                                    <span><img src="/style/images/GameGear.png" height="12%" width="12%"></span>
+                                <% } else if (master[i].platform == 'Saturn' ) { %> 
+                                    <span><img src="/style/images/Saturn.png" height="15%" width="15%"></span>
+                                <% } else if (master[i].platform == 'Dreamcast' ) { %> 
+                                    <span><img src="/style/images/Dreamcast.png" height="15%" width="15%"></span>
+                                <% } %></span>
+                                <span id="complete" hidden="true"><%= master[i].complete %></span>
+                                <span id='trash' class='fa fa-trash'></span>
                             </li>
                         <% } %>
+                    <% } %>
+                        </div>
                     </ul>
                 </section>
             </section>
-
         </main>
 
         <script src="js/main.js"></script>

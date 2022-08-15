@@ -92,7 +92,7 @@ main h2, h3, form{
     height: 100%;
     width: 100%;
     border: 5px red solid;
-    justify-content: space-around;
+    justify-content: center;
 }
 @media screen and (max-width: 600px) {
     #allSubmit {
